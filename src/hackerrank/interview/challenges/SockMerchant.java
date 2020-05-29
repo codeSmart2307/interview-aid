@@ -1,6 +1,5 @@
 package hackerrank.interview.challenges;
 
-import java.io.*;
 import java.util.*;
 
 public class SockMerchant {
@@ -39,7 +38,7 @@ public class SockMerchant {
         return pairs;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         int result = sockMerchantEfficient(7, new int[]{10, 20, 10, 20, 10, 30, 10});
 
         System.out.println(result);
