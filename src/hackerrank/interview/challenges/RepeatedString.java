@@ -6,27 +6,16 @@ public class RepeatedString {
 
     // My original solution
     static long repeatedString(String s, long n) {
-        int stringLen = s.length();
-        String finalRepeatedString;
-        if (stringLen < n) {
-            long timesToRepeat = n/stringLen;
-            String fullStringRepeated = String.join("", Collections.nCopies(Math.toIntExact(timesToRepeat), s));
-            int nRemainder = (int)n - fullStringRepeated.length();
-            finalRepeatedString = fullStringRepeated + s.substring(0, Math.min(stringLen, nRemainder));
-        } else if (stringLen > n) {
-            finalRepeatedString = s.substring(0, Math.min(stringLen, (int)n));
-        } else {
-            finalRepeatedString = s;
-        }
-
-        int aCount = 0;
-        for (char character: finalRepeatedString.toCharArray()) {
-            if (character == 'a') {
-                aCount++;
+        int strLength = s.length();
+        long aCount = 0;
+        long factor = n / strLength;
+        long remainder = n % strLength;
+        for (int i=0; i < strLength; i++) {
+            if (s.charAt(i) == 'a') {
+                aCount += (i < remainder) ? factor + 1 : factor;
             }
         }
-
-        return (long)aCount;
+        return aCount;
     }
 
     // More efficient solution
@@ -35,7 +24,7 @@ public class RepeatedString {
     }
 
     public static void main(String[] args) {
-        long result = repeatedString("a", 1000000000000L);
+        long result = repeatedString("abca", 1000000000000L);
         System.out.println("Count: " + result);
     }
 }
